@@ -5,7 +5,10 @@ let model: toxicity.ToxicityClassifier | null = null;
 
 async function loadModel() {
   if (!model) {
-    model = await toxicity.load(0.8); // 0.8 is the classification threshold
+    model = await toxicity.load(0.8, [
+      "identity_attack", "insult", "obscene", "severe_toxicity",
+      "sexual_explicit", "threat", "toxicity"
+    ]); // 0.8 is the classification threshold
   }
   return model;
 }
