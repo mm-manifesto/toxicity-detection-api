@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "esnext", "deno.ns"],
+    "strict": true
+  },
+  "imports": {
+    "@tensorflow/tfjs": "https://esm.sh/@tensorflow/tfjs",
+    "@tensorflow-models/toxicity": "https://esm.sh/@tensorflow-models/toxicity"
+  },
+  "tasks": {
+    "start": "deno run --allow-net mod.ts"
+  }
+}
