@@ -9,6 +9,7 @@ A simple HTTP API for detecting toxic content in text using TensorFlow.js and th
 - 🌐 **HTTP API** - Simple REST endpoint for easy integration
 - 🛡️ **Secure** - Built with Deno for enhanced security
 - 📊 **Detailed results** - Returns probability scores for each toxicity category
+- 🧪 **Tested** - Includes basic model loading tests
 
 ## Toxicity Categories
 
@@ -110,7 +111,10 @@ Each toxicity category returns:
 The toxicity classification threshold is set to 0.8 (80% confidence) in `mod.ts`:
 
 ```typescript
-model = await toxicity.load(0.8); // Adjust this value as needed
+model = await toxicity.load(0.8, [
+  "identity_attack", "insult", "obscene", "severe_toxicity",
+  "sexual_explicit", "threat", "toxicity"
+]); // Adjust threshold value as needed
 ```
 
 ### Import Map
@@ -133,7 +137,10 @@ Dependencies are managed through Deno's import map in `deno.json`:
 ```
 test-model/
 ├── mod.ts          # Main API server
+├── mod_test.ts     # Basic model loading tests
 ├── deno.json       # Deno configuration and import map
+├── deno.lock       # Dependency lock file
+├── LICENSE         # MIT License
 └── README.md       # This file
 ```
 
@@ -142,6 +149,18 @@ test-model/
 ```bash
 deno task start     # Start the development server
 ```
+
+### Testing
+
+Run the tests to verify the model loads correctly:
+
+```bash
+deno test -A
+```
+
+The tests verify that:
+- The toxicity model can be loaded successfully
+- The model is properly initialized
 
 ### Permissions
 
