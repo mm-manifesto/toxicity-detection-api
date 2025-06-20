@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore: Deno import map resolution not recognized by TypeScript
 import * as toxicity from "@tensorflow-models/toxicity";
 
 let model: toxicity.ToxicityClassifier | null = null;
@@ -10,7 +10,7 @@ async function loadModel() {
   return model;
 }
 
-// @ts-ignore
+// @ts-ignore: Deno global not recognized by TypeScript
 Deno.serve(async (req) => {
   const { searchParams } = new URL(req.url);
   const text = searchParams.get("text");
